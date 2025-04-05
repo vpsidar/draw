@@ -1,5 +1,6 @@
 import express, {Request, Response} from 'express'
 import AuthController from './controllers/authController';
+import RoomController from './controllers/roomController';
 const PORT =  process.env.SERVER_PORT ?? 3001;
 export default class App {
     private readonly express = express();
@@ -8,7 +9,8 @@ export default class App {
             res.status(200).json({'message':'Hello from draw backend'});
         })
         //all route to controller mappings
-        this.express.use('/auth', new AuthController().registerRoute())
+        this.express.use('/auth', new AuthController().registerRoute());
+        this.express.use('/rooms', new RoomController().registerRoute());
         return this;
     }
 
