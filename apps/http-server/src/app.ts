@@ -1,4 +1,5 @@
 import express, {Request, Response} from 'express'
+import cors from 'cors'
 import AuthController from './controllers/authController';
 import RoomController from './controllers/roomController';
 const PORT =  process.env.SERVER_PORT ?? 3001;
@@ -15,7 +16,7 @@ export default class App {
     }
 
     async startExpressServer() {
-        //this.express.use() //cors
+        this.express.use(cors()) //cors
         this.express.use(express.json());
         this.express.use(express.urlencoded({extended:true}))
         try {
